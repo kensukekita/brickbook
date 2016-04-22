@@ -15,9 +15,22 @@
 		<li><%= link_to "Status", statuses_path %></li>
 		
 		</ul>
+		<% if user_signed_in? %>
+		<ul class="nav navbar-nav pull-right" aria-labelledby="dropdownMenu1">
+			<li><%= link_to current_user.nombre_completo %></li>
+			<li><%= link_to "Editar datos", edit_user_registration_path %></li>
+			<li><%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete %></li>
+			</ul>
+			<% else %>
+			<ul class="nav navbar-nav pull-right">
+			<li><%= link_to "Registrarse", new_user_registration_path %></li>
+			<li><%= link_to "Iniciar sesion", new_user_session_path %></li>
+			</ul>
+			<% end %>
+		
 	</div>
 </div>
-
+ 
 </div>
 
 <div class="container">

@@ -6,18 +6,28 @@
 
 
 <div class="status">
-  
-  <strong><%= status.nombre %></strong>
+  <% if user_signed_in? %>
+  <strong><%= status.user.nombre_completo %></strong>
   <p><%= status.contenido %></p>
   <div>
     <%= link_to "Hace "+ time_ago_in_words(status.created_at), status %>
+    
+
     <span class="admin">
       
       <%= link_to 'Editar', edit_status_path(status), class: "btn btn-warning" %> | 
       <%= link_to 'Eliminar', status, method: :delete, data: {confirm: "estas seguro que deseas eliminar el estado?"}, class: "btn btn-danger" %>
 
     </span>
+    </div>
+    <% else %>
+    <div class="status">
+    <strong><%= status.user.nombre_completo %></strong>
+  <p><%= status.contenido %></p>
+  <div>
+    <%= link_to "Hace "+ time_ago_in_words(status.created_at), status %>
   </div>
 </div>
+<% end %>
 <% end %>
 
